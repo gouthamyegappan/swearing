@@ -1,5 +1,2 @@
 streamlit==1.40.0
-pillow>=7.1.0,<10
-plotly==5.15.0
-wheel>=0.38.4
 
