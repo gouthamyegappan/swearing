@@ -6,6 +6,7 @@ import plotly.express as px
 from zipfile import ZipFile
 import pickle
 import numpy as np
+import seaborn as sb
 
 # Open the .zip file
 with ZipFile('data1 (2).zip', 'r') as f:
