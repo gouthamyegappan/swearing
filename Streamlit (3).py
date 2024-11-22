@@ -96,6 +96,7 @@ with col1:
 with col2:
     st.plotly_chart(fig)
 
+'''
 st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
 
@@ -210,4 +211,4 @@ st.pyplot(dataplot.get_figure())
 
 
 st.subheader("What Percent of the 7 Are Used?")
-  
+'''
