@@ -8,7 +8,7 @@ import pickle
 import numpy as np
 
 # Open the .zip file
-with ZipFile('data1.zip', 'r') as f:
+with ZipFile('data1 (2).zip', 'r') as f:
     # Extract all contents in the current directory
     f.extractall()
 
