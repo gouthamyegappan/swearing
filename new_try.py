@@ -97,7 +97,7 @@ st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
 
 songs = pd.read_csv('songs_ranked.csv', index_col = 0)
-rank_dta = songs.groupby("rank").mean()['total_swear']
+rank_dta = songs.groupby("rank")['total_swear'].mean()
 
 fig2 = px.line(x=rank_dta.index, y=rank_dta, title="Rank's Impact on Swearing")
 fig2.update_layout(
