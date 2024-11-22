@@ -18,14 +18,40 @@ with ZipFile('data1.zip', 'r') as f:
     # Open the .pkl file inside the zip
     with f.open('data1.pkl') as pkl_file:
         # Load the pickle data
-        data = pd.read_pickle(pkl_file)
+        data1 = pd.read_pickle(pkl_file)
 
-# Check if the data is already a DataFrame
-if isinstance(data, pd.DataFrame):
-    df = data
-else:
-    # If not a DataFrame, attempt to convert
-    df = pd.DataFrame(data)
+# Open the .zip file
+with ZipFile('data2.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data2.pkl') as pkl_file:
+        # Load the pickle data
+        data2 = pd.read_pickle(pkl_file)
+
+# Open the .zip file
+with ZipFile('data3.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data3.pkl') as pkl_file:
+        # Load the pickle data
+        data3 = pd.read_pickle(pkl_file)
+
+# Open the .zip file
+with ZipFile('data4.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data4.pkl') as pkl_file:
+        # Load the pickle data
+        data4 = pd.read_pickle(pkl_file)
+
+
+df = pd.concat([data1, data2, data3, data4])
 
 
 
