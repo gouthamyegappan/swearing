@@ -18,7 +18,7 @@ with ZipFile('data1.zip', 'r') as f:
     # Open the .pkl file inside the zip
     with f.open('data1.pkl') as pkl_file:
         # Load the pickle data
-        data = pickle.load(pkl_file)
+        data = pd.read_pickle(pkl_file)
 
 # Check if the data is already a DataFrame
 if isinstance(data, pd.DataFrame):
