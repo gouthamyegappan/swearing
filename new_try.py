@@ -127,3 +127,27 @@ st.subheader("What percent of songs at each rank have N number of swear words?")
 number = st.number_input(
     "Songs With This Number of Swears", value=1
 )
+
+
+num_swears = final[final['total_swear'] >= number].groupby('rank').count()['title']/final.groupby('rank').count()['title']
+fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+st.plotly_chart(fig3)
+
+
+st.subheader("Trajectory of Swearing in Music Over Time")
+number = st.number_input(
+    "Songs With This Percent of Swears", value=0.01, min_value = 0.001, max_value = 0.9
+)
+num_swears = final[final['percent_swear'] >= number].groupby('date').count()['title']/final.groupby('date').count()['title']
+num_swears = num_swears.fillna(0)
+fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+st.plotly_chart(fig4)
+
+
+st.subheader("Trajectory of Swearing in Music Over Time Raw Value")
+numb = st.number_input(
+    "Songs With This # of Swears", value=1)
+num_swears = final[final['total_swear'] >= numb].groupby('date').count()['title']/final.groupby('date').count()['title']
+num_swears = num_swears.fillna(0)
+fig5 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+st.plotly_chart(fig5)
