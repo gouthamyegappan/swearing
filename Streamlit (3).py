@@ -7,6 +7,52 @@ import numpy as np
 import pickle
 import plotly.express as px
 import seaborn as sb
+from zipfile import ZipFile
+import pickle
+import numpy as np
+
+# Open the .zip file
+with ZipFile('data1.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data1.pkl') as pkl_file:
+        # Load the pickle data
+        data1 = pd.read_pickle(pkl_file)
+
+# Open the .zip file
+with ZipFile('data2.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data2.pkl') as pkl_file:
+        # Load the pickle data
+        data2 = pd.read_pickle(pkl_file)
+
+# Open the .zip file
+with ZipFile('data3.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data3.pkl') as pkl_file:
+        # Load the pickle data
+        data3 = pd.read_pickle(pkl_file)
+
+# Open the .zip file
+with ZipFile('data4.zip', 'r') as f:
+    # Extract all contents in the current directory
+    f.extractall()
+
+    # Open the .pkl file inside the zip
+    with f.open('data4.pkl') as pkl_file:
+        # Load the pickle data
+        data4 = pd.read_pickle(pkl_file)
+
+
+final = pd.concat([data1, data2, data3, data4])
 
 st.set_page_config(layout='wide')
 
@@ -15,8 +61,7 @@ st.subheader("How has swearing in music changed over the past four decades?")
 st.write("Andrew Kornder and Goutham Yegappan :)")
 
 
-with open('all_music.pickle', 'rb') as handle:
-    final = pickle.load(handle)
+
 
 st.subheader("Songs Found By Year")
 
@@ -50,10 +95,6 @@ with col1:
 
 with col2:
     st.plotly_chart(fig)
-
-
-
-
 
 st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
