@@ -6,6 +6,9 @@ import pandas as pd
 from zipfile import ZipFile
 import pickle
 
+st.write("Pandas version:", pd.__version__)
+st.write("NumPy version:", np.__version__)
+
 # Open the .zip file
 with ZipFile('data1.zip', 'r') as f:
     # Extract all contents in the current directory
