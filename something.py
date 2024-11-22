@@ -6,9 +6,6 @@ import pandas as pd
 from zipfile import ZipFile
 import pickle
 
-dta = pd.read_csv('Genius_Lyrics.csv')
-st.write(dta.iloc[0])
-'''
 # Open the .zip file
 with ZipFile('data1.zip', 'r') as f:
     # Extract all contents in the current directory
@@ -26,8 +23,6 @@ else:
     # If not a DataFrame, attempt to convert
     df = pd.DataFrame(data)
 
-# Display the DataFrame
-'''
 
 
 st.subheader("How has swearing in music changed over the past four decades?")
