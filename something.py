@@ -16,7 +16,7 @@ with ZipFile('data1 (2).zip', 'r') as f:
     f.extractall()
 
     # Open the .pkl file inside the zip
-    with f.open('data2.pkl') as pkl_file:
+    with f.open('data1.pkl') as pkl_file:
         # Load the pickle data
         data1 = pd.read_pickle(pkl_file)
 
