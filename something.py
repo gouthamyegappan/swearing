@@ -5,6 +5,7 @@ st.set_page_config(layout='wide')
 import pandas as pd
 from zipfile import ZipFile
 import pickle
+import numpy as np
 
 st.write("Pandas version:", pd.__version__)
 st.write("NumPy version:", np.__version__)
