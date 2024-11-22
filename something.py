@@ -11,12 +11,12 @@ st.write("Pandas version:", pd.__version__)
 st.write("NumPy version:", np.__version__)
 
 # Open the .zip file
-with ZipFile('data1.zip', 'r') as f:
+with ZipFile('data2.zip', 'r') as f:
     # Extract all contents in the current directory
     f.extractall()
 
     # Open the .pkl file inside the zip
-    with f.open('data1.pkl') as pkl_file:
+    with f.open('data2.pkl') as pkl_file:
         # Load the pickle data
         data1 = pd.read_pickle(pkl_file)
 
