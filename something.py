@@ -11,7 +11,7 @@ st.write("Pandas version:", pd.__version__)
 st.write("NumPy version:", np.__version__)
 
 # Open the .zip file
-with ZipFile('data2.zip', 'r') as f:
+with ZipFile('data1 (2).zip', 'r') as f:
     # Extract all contents in the current directory
     f.extractall()
 
