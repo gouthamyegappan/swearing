@@ -212,7 +212,6 @@ dates = list(final['date'].unique())
 option = st.selectbox(
     "What date would you like data for?",
     tuple(dates),
-    index="2023-12-30",
 )
 user_data = final[final['Years'] == option] # Filtering the dataframe.
 st.dataframe(user_data.head(5))
