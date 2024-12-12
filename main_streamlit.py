@@ -226,7 +226,8 @@ with open('dist.json', 'r') as f:
 	dists = json.load(f)
 
 
-with st.container(border=True):
+'''
+with st.container():
     dists = {int(k): v for k, v in dists.items()}
 
     year = st.slider("Year", min(dists) >> 1, max(dists) >> 1, key="slider")
@@ -240,5 +241,5 @@ with st.container(border=True):
 
     st.plotly_chart(fig, use_container_width=True)
 
-
+'''
 st.subheader("What Percent of the 7 Are Used?")
