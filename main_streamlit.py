@@ -220,6 +220,8 @@ option = st.selectbox(
 user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
+
+@st.cache_resource
 j = pd.read_json('traj.json')
 
 counts = [j.iloc[1][0], j.iloc[1][1]]
