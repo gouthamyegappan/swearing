@@ -222,16 +222,18 @@ st.dataframe(user_data)
 
 
 @st.cache_resource
-j = pd.read_json('traj.json')
+def load_json()
+	j = pd.read_json('traj.json')
 
-counts = [j.iloc[1][0], j.iloc[1][1]]
-words = list(j.iloc[0].values)
-
+	counts = [j.iloc[1][0], j.iloc[1][1]]
+	words = list(j.iloc[0].values)
+	return (counts,words)
 
 with st.container(border=True):
 
     relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
     on = []
+    counts, words = load_json()
     with st.container():
         for word in words:
             on.append(st.checkbox(word, key=word))
