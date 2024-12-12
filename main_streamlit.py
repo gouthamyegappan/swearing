@@ -222,7 +222,7 @@ st.dataframe(user_data)
 
 @st.cache_resource
 with open('dist.json', 'r') as f:
-	dists = json.load(f)
+     dists = json.load(f)
 
 
 '''
