@@ -50,6 +50,7 @@ with ZipFile('data4.zip', 'r') as f:
 
 
 final = pd.concat([data1, data2, data3, data4])
+final = pd.concat([final.iloc[:,0:6], final.iloc[:,11:]], axis = 1)
 
 st.set_page_config(layout='wide')
 
@@ -213,7 +214,33 @@ option = st.selectbox(
     "What date would you like data for?",
     tuple(dates),
 )
+
 user_data = final[final['date'] == option] # Filtering the dataframe.
-st.dataframe(user_data.head(5))
+st.dataframe(user_data)
+
+@st.cache_resource
+def load():
+    import json
+    import pandas as pd
+
+    with open('dist.json', 'r') as f:
+        return json.load(f)
+
+
+with st.container(border=True):
+    dists = load()
+    dists = {int(k): v for k, v in dists.items()}
+
+    year = st.slider("Year", min(dists) >> 1, max(dists) >> 1, key="slider")
+    relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
+
+    bins, hist = dists[2 * year + relative]
+
+    fig = go.Figure(go.Bar(x=bins[:-1], y=hist))
+    fig.update_layout(title_text="Distribution of how many swears are present in song lyrics from %s" % year,
+                      title_x=0.5)
+
+    st.plotly_chart(fig, use_container_width=True)
+
 
 st.subheader("What Percent of the 7 Are Used?")
