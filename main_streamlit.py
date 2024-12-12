@@ -222,7 +222,7 @@ st.dataframe(user_data)
 
 
 @st.cache_resource
-def load_json()
+def load_json():
 	j = pd.read_json('traj.json')
 
 	counts = [j.iloc[1][0], j.iloc[1][1]]
