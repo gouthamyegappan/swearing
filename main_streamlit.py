@@ -207,13 +207,14 @@ corr.corr()
 dataplot = sb.heatmap(corr.corr(),vmin = -0.1, vmax = 0.6, annot=True)
 st.pyplot(dataplot.get_figure())
 
+'''
 dates = list(final['date'].unique())
 option = st.selectbox(
     "What date would you like data for?",
     dates[:5],
 )
 #user_data = final[final['Years'] == year] # Filtering the dataframe.
-
+'''
 #st.dataframe(user_data.head())
 
 st.subheader("What Percent of the 7 Are Used?")
