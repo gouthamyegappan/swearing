@@ -211,7 +211,7 @@ st.pyplot(dataplot.get_figure())
 dates = list(final['date'].unique())
 option = st.selectbox(
     "What date would you like data for?",
-    ("HELLO", "BITCH", "ASSHOLE")
+    tuple(dates)
 )
 #user_data = final[final['Years'] == year] # Filtering the dataframe.
 #st.dataframe(user_data.head())
