@@ -220,4 +220,6 @@ option = st.selectbox(
 user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
+traj = pd.read_json('traj.json')
+
 st.subheader("What Percent of the 7 Are Used?")
