@@ -220,9 +220,8 @@ option = st.selectbox(
 user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
-with open('dist.json', 'r') as f:
-     dists = json.load(f)
-
+traj = pd.read_json('traj.json')
+st.dataframe(traj)
 
 '''
 with st.container():
