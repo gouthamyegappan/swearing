@@ -211,9 +211,10 @@ st.pyplot(dataplot.get_figure())
 dates = list(final['date'].unique())
 option = st.selectbox(
     "What date would you like data for?",
-    tuple(dates)
+    tuple(dates),
+    index="2023-12-30",
 )
-#user_data = final[final['Years'] == year] # Filtering the dataframe.
-#st.dataframe(user_data.head())
+user_data = final[final['Years'] == option] # Filtering the dataframe.
+st.dataframe(user_data.head(5))
 
 st.subheader("What Percent of the 7 Are Used?")
