@@ -213,7 +213,7 @@ option = st.selectbox(
     "What date would you like data for?",
     tuple(dates),
 )
-user_data = final[final['Years'] == option] # Filtering the dataframe.
+user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data.head(5))
 
 st.subheader("What Percent of the 7 Are Used?")
