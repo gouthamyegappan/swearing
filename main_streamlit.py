@@ -7,6 +7,7 @@ from zipfile import ZipFile
 import pickle
 import numpy as np
 import seaborn as sb
+import json
 
 # Open the .zip file
 with ZipFile('data1 (2).zip', 'r') as f:
@@ -219,16 +220,12 @@ user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
 @st.cache_resource
-def load():
-    import json
-    import pandas as pd
 
-    with open('dist.json', 'r') as f:
-        return json.load(f)
+with open('dist.json', 'r') as f:
+	dists = json.load(f)
 
 
 with st.container(border=True):
-    dists = load()
     dists = {int(k): v for k, v in dists.items()}
 
     year = st.slider("Year", min(dists) >> 1, max(dists) >> 1, key="slider")
