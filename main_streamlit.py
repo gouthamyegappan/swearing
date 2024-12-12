@@ -220,7 +220,6 @@ option = st.selectbox(
 user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
-@st.cache_resource
 with open('dist.json', 'r') as f:
      dists = json.load(f)
 
