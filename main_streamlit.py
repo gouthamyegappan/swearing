@@ -220,23 +220,4 @@ option = st.selectbox(
 user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
-traj = pd.read_json('traj.json')
-st.dataframe(traj)
-
-'''
-with st.container():
-    dists = {int(k): v for k, v in dists.items()}
-
-    year = st.slider("Year", min(dists) >> 1, max(dists) >> 1, key="slider")
-    relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
-
-    bins, hist = dists[2 * year + relative]
-
-    fig = go.Figure(go.Bar(x=bins[:-1], y=hist))
-    fig.update_layout(title_text="Distribution of how many swears are present in song lyrics from %s" % year,
-                      title_x=0.5)
-
-    st.plotly_chart(fig, use_container_width=True)
-
-'''
 st.subheader("What Percent of the 7 Are Used?")
