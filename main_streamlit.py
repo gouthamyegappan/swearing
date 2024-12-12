@@ -210,7 +210,7 @@ st.pyplot(dataplot.get_figure())
 dates = list(final['date'].unique())
 option = st.selectbox(
     "What date would you like data for?",
-    dates,
+    dates[:5],
 )
 #user_data = final[final['Years'] == year] # Filtering the dataframe.
 
