@@ -221,5 +221,30 @@ user_data = final[final['date'] == option] # Filtering the dataframe.
 st.dataframe(user_data)
 
 traj = pd.read_json('traj.json')
+counts = [j.iloc[1][0], j.iloc[1][1]]
+words = list(j.iloc[0].values)
 
+
+with st.container(border=True):
+
+    relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
+    on = []
+    with st.container():
+        for word in words:
+            on.append(st.checkbox(word, key=word))
+
+    counts = counts[int(relative)]
+
+    ppy = go.Figure()
+
+    x = list(range(1980, 2024))
+    for word, b in zip(words, on):
+        if not b:
+            continue
+
+        y = counts[word]
+        ppy.add_trace(go.Scatter(x=x, y=y, mode='lines', name=word))
+
+    ppy.update_layout(xaxis=dict(range=[x[0], x[-1]]))
+    st.plotly_chart(ppy, use_container_width=True)
 st.subheader("What Percent of the 7 Are Used?")
