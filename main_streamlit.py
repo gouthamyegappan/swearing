@@ -207,9 +207,13 @@ corr.corr()
 dataplot = sb.heatmap(corr.corr(),vmin = -0.1, vmax = 0.6, annot=True)
 st.pyplot(dataplot.get_figure())
 
-year = st.slider('Select number of years', min_value=1960, max_value=2023) # Getting the input.
-user_data = final[final['Years'] == year] # Filtering the dataframe.
+dates = list(final['date'].unique())
+option = st.selectbox(
+    "What date would you like data for?",
+    dates,
+)
+#user_data = final[final['Years'] == year] # Filtering the dataframe.
 
-st.dataframe(user_data.head())
+#st.dataframe(user_data.head())
 
 st.subheader("What Percent of the 7 Are Used?")
