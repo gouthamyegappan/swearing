@@ -38,29 +38,29 @@ if 'final' in st.session_state:
 	
 	# Iterate through the years and add each bar plot as a subplot
 	for year in years:
-	print(year)
-	
-	# Filter data by year range
-	dta = final[(final['date'] > str(year)) & (final['date'] < str(year + 10))]
-	
-	# Calculate percentage
-	percent = dta.groupby('total_swear').count().iloc[1:, :] / len(dta)
-	
-	# Create the bar plot
-	bar_data = go.Bar(x=percent.index, y=percent['title'], showlegend=False)
-	
-	# Add the bar plot to the subplot figure
-	fig.add_trace(bar_data, row=row, col=col)
-	
-	# Update layout for each subplot's axes
-	fig.update_yaxes(range=[0, 0.1], row=row, col=col)
-	fig.update_xaxes(range=[0, 50], row=row, col=col)
-	
-	# Move to the next subplot position
-	col += 1
-	if col > 2:
-	    col = 1
-	    row += 1
+		print(year)
+		
+		# Filter data by year range
+		dta = final[(final['date'] > str(year)) & (final['date'] < str(year + 10))]
+		
+		# Calculate percentage
+		percent = dta.groupby('total_swear').count().iloc[1:, :] / len(dta)
+		
+		# Create the bar plot
+		bar_data = go.Bar(x=percent.index, y=percent['title'], showlegend=False)
+		
+		# Add the bar plot to the subplot figure
+		fig.add_trace(bar_data, row=row, col=col)
+		
+		# Update layout for each subplot's axes
+		fig.update_yaxes(range=[0, 0.1], row=row, col=col)
+		fig.update_xaxes(range=[0, 50], row=row, col=col)
+		
+		# Move to the next subplot position
+		col += 1
+		if col > 2:
+		    col = 1
+		    row += 1
 	
 	
 	# Update the overall layout (no legend)
