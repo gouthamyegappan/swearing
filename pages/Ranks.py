@@ -48,7 +48,7 @@ new = rank_dta[-10:].sum()/10
 percent_change = round((new-old)/old, 3) * 100
 
 with col3:
-	st.write(f'In the chart to the right, there is {percent_change}% more swears on average in the songs that reach ranks 90-100 compared to the ones that make it to 1-10. When looking at the best fit line we can see that the slope is {slope}, meaning that for each rank we drop there is on average that many more swears. Our y-intercept is {intercept}, meaning that songs making it to the number one spot, still have this many swears on average.')
+	st.write(f'In the chart to the right, there is {percent_change}% more swears on average in the songs that reach ranks 90-100 compared to the ones that make it to 1-10. When looking at the best fit line we can see that the slope is {round(slope, 2)}, meaning that for each rank we drop there is on average that many more swears. Our y-intercept is {round(intercept, 2)}, meaning that songs making it to the number one spot, still have this many swears on average.')
 
 with col4:
 	st.plotly_chart(fig2)
