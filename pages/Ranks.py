@@ -10,9 +10,6 @@ import seaborn as sb
 import json
 import plotly.graph_objects as go
 
-final = st.session_state['final']
-st.write(f'{len(final)} is the length of the data')
-
 st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
 
@@ -49,17 +46,20 @@ number = st.number_input(
     "Songs With This Number of Swears", value=1
 )
 
-
-num_swears = final[final['total_swear'] >= number].groupby('rank').count()['title']/final.groupby('rank').count()['title']
-fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
-st.plotly_chart(fig3)
-
-
-st.subheader("Trajectory of Swearing in Music Over Time")
-number = st.number_input(
-    "Songs With This Percent of Swears", value=0.01, min_value = 0.001, max_value = 0.9
-)
-num_swears = final[final['percent_swear'] >= number].groupby('date').count()['title']/final.groupby('date').count()['title']
-num_swears = num_swears.fillna(0)
-fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
-st.plotly_chart(fig4)
+if 'final' in st.session_state:
+	
+	final = st.session_state['final']
+	
+	num_swears = final[final['total_swear'] >= number].groupby('rank').count()['title']/final.groupby('rank').count()['title']
+	fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+	st.plotly_chart(fig3)
+	
+	
+	st.subheader("Trajectory of Swearing in Music Over Time")
+	number = st.number_input(
+	    "Songs With This Percent of Swears", value=0.01, min_value = 0.001, max_value = 0.9
+	)
+	num_swears = final[final['percent_swear'] >= number].groupby('date').count()['title']/final.groupby('date').count()['title']
+	num_swears = num_swears.fillna(0)
+	fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+	st.plotly_chart(fig4)
