@@ -54,13 +54,15 @@ with ZipFile('data4.zip', 'r') as f:
 final = pd.concat([data1, data2, data3, data4])
 final = pd.concat([final.iloc[:,0:6], final.iloc[:,11:]], axis = 1)
 
+# Store values in session state
+if 'final' not in st.session_state:
+	st.session_state['final'] = final
+
 st.set_page_config(layout='wide')
 
 
 st.subheader("How has swearing in music changed over the past four decades?")
 st.write("Andrew Kornder and Goutham Yegappan :)")
-
-
 
 
 st.subheader("Songs Found By Year")
