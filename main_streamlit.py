@@ -109,16 +109,6 @@ corr.corr()
 dataplot = sb.heatmap(corr.corr(),vmin = -0.1, vmax = 0.6, annot=True)
 st.pyplot(dataplot.get_figure())
 
-
-dates = list(final['date'].unique())
-option = st.selectbox(
-    "What date would you like data for?",
-    tuple(dates),
-)
-
-user_data = final[final['date'] == option] # Filtering the dataframe.
-st.dataframe(user_data)
-
 j = pd.read_json('traj.json')
 
 counts = [j.iloc[1][0], j.iloc[1][1]]
