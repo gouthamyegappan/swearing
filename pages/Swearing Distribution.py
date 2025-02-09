@@ -1,3 +1,7 @@
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+
 st.subheader("Trajectory of Swearing in Music Over Time Raw Value")
 
 if 'final' in st.session_state:
@@ -12,8 +16,7 @@ if 'final' in st.session_state:
     st.plotly_chart(fig5)
     
     st.subheader("Distribution of Songs")
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
+
     
     # Create a 3x2 subplot layout and specify subplot titles dynamically
     years = list(range(1960, 2020, 10))
