@@ -26,8 +26,8 @@ if 'final' in st.session_state:
 	j = pd.read_json('traj.json')
 	
 	counts = [j.iloc[1][0], j.iloc[1][1]]
-	#words = list(j.iloc[0].values)
-	words = ['shit', 'bitch', 'damn', 'dick', 'fuck_total', 'ass', 'hell']
+	words = list(j.iloc[0].values)
+	
 	with st.container(border=True):
 	
 			relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
