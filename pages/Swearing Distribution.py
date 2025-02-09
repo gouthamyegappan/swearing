@@ -19,8 +19,7 @@ if 'final' in st.session_state:
 	
 	final = st.session_state['final']
     
-    numb = st.number_input(
-        "Songs With This # of Swears", value=1)
+    numb = st.number_input("Songs With This # of Swears", value=1)
     num_swears = final[final['total_swear'] >= numb].groupby('date').count()['title']/final.groupby('date').count()['title']
     num_swears = num_swears.fillna(0)
     fig5 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
