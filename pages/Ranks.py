@@ -61,8 +61,8 @@ number = st.number_input(
 if 'final' in st.session_state:
 	
 	final = st.session_state['final']
-	
-	num_swears = final[final['total_swear'] >= number].groupby('rank').count()['title']/final.groupby('rank').count()['title']
+	data = pd.read_csv('swear_words_by_rank.csv', index_col = 0)
+	num_swears = data[number]
 	fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
 	st.plotly_chart(fig3)
 	
