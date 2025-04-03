@@ -62,6 +62,7 @@ if 'final' in st.session_state:
 	
 	final = st.session_state['final']
 	data = pd.read_csv('swear_words_by_rank.csv', index_col = 0)
+	data.columns = data.columns.astype(int)
 	num_swears = data[number]
 	fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
 	st.plotly_chart(fig3)
