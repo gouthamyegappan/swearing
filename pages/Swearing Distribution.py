@@ -68,3 +68,13 @@ if 'final' in st.session_state:
 	
 	st.plotly_chart(fig)
 
+
+st.subheader("Trajectory of Swearing in Music Over Time")
+number = st.number_input(
+    "Songs With This Percent of Swears", value=0.01, min_value = 0.01, max_value = 0.9
+)
+
+num_swears = final[final['percent_swear'] >= number].groupby('date').count()['title']/final.groupby('date').count()['title']
+num_swears = num_swears.fillna(0)
+fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+st.plotly_chart(fig4)
