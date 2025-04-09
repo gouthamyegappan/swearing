@@ -11,58 +11,17 @@ import numpy as np
 import seaborn as sb
 import json
 import plotly.graph_objects as go
-
+import plotly.io as pio
 
 st.subheader("Trajectory of Swearing in Music Over Time Raw Value")
 
-if 'final' in st.session_state:
-	final = st.session_state['final']
-    
+# Read the JSON file and convert it back to a Plotly figure
+with open("dist_figure.json", "r") as f:
+    fig_json = f.read()
 
-	
-	st.subheader("Distribution of Songs")
-	
-	
-	# Create a 3x2 subplot layout and specify subplot titles dynamically
-	years = list(range(1960, 2020, 10))
-	titles = [f"{year} - {year + 9}" for year in years]  # Titles for each subplot
-	fig = make_subplots(rows=3, cols=2, subplot_titles=titles)
-	
-	# Initialize row and column for subplots
-	row = 1
-	col = 1
-	
-	# Iterate through the years and add each bar plot as a subplot
-	for year in years:
-		print(year)
-		
-		# Filter data by year range
-		dta = final[(final['date'] > str(year)) & (final['date'] < str(year + 10))]
-		
-		# Calculate percentage
-		percent = dta.groupby('total_swear').count().iloc[1:, :] / len(dta)
-		
-		# Create the bar plot
-		bar_data = go.Bar(x=percent.index, y=percent['title'], showlegend=False)
-		
-		# Add the bar plot to the subplot figure
-		fig.add_trace(bar_data, row=row, col=col)
-		
-		# Update layout for each subplot's axes
-		fig.update_yaxes(range=[0, 0.1], row=row, col=col)
-		fig.update_xaxes(range=[0, 50], row=row, col=col)
-		
-		# Move to the next subplot position
-		col += 1
-		if col > 2:
-		    col = 1
-		    row += 1
-	
-	
-	# Update the overall layout (no legend)
-	fig.update_layout(height=900, width=1000, title_text="Swear Word Frequency by Year Range", showlegend=False)
-	
-	st.plotly_chart(fig)
+# Load the figure from the JSON string
+fig = pio.from_json(fig_json)
+st.plotly_chart(fig)
 
 data = pd.read_csv('percent_dist.csv', index_col = 0)
 data.columns = data.columns.astype(float)
