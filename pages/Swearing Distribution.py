@@ -18,11 +18,7 @@ st.subheader("Trajectory of Swearing in Music Over Time Raw Value")
 if 'final' in st.session_state:
 	final = st.session_state['final']
     
-	numb = st.number_input("Songs With This # of Swears", value=1)
-	num_swears = final[final['total_swear'] >= numb].groupby('date').count()['title']/final.groupby('date').count()['title']
-	num_swears = num_swears.fillna(0)
-	fig5 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
-	st.plotly_chart(fig5)
+
 	
 	st.subheader("Distribution of Songs")
 	
@@ -77,4 +73,12 @@ number = st.number_input(
 num_swears = data[number]
 fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
 st.plotly_chart(fig4)
+
+
+data = pd.read_csv('songs_by_swears.csv', index_col = 0)
+numb = st.number_input("Songs With This # of Swears", value=1, max_value = 30)
+data.columns = data.columns.astype(float)
+num_swears = data[numb]
+fig5 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+st.plotly_chart(fig5)
 
