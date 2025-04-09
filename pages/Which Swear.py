@@ -16,7 +16,6 @@ if 'final' in st.session_state:
 	final = st.session_state['final']
 	st.subheader("Correlation Matrix of Swears")
 	
-	final['fuck_total'] = final['fuck'] + final['motherfuck']
 	corr = final.drop_duplicates(subset = ['title', 'artist'], keep = 'first')[['shit', 'bitch', 'damn', 'dick', 'fuck_total', 'ass', 'hell']]
 	corr.corr()
 	
