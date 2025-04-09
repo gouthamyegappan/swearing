@@ -68,7 +68,6 @@ if 'final' in st.session_state:
 	
 	st.plotly_chart(fig)
 
-'''
 data = pd.read_csv('percent_dist.csv', index_col = 0)
 data.columns = data.columns.astype(float)
 st.subheader("Trajectory of Swearing in Music Over Time")
@@ -78,4 +77,4 @@ number = st.number_input(
 num_swears = data[number]
 fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
 st.plotly_chart(fig4)
-'''
+
