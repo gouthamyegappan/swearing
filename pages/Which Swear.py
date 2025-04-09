@@ -12,6 +12,10 @@ import seaborn as sb
 import json
 import plotly.graph_objects as go
 
+st.subheader("Most Sweary Song Every Year")
+data = pd.read_csv('most_byyear.csv', index_col = 0)
+st.dataframe(data)
+
 if 'final' in st.session_state:
 	final = st.session_state['final']
 	st.subheader("Correlation Matrix of Swears")
