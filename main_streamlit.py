@@ -53,6 +53,8 @@ with ZipFile('data4.zip', 'r') as f:
 
 final = pd.concat([data1, data2, data3, data4])
 final = pd.concat([final.iloc[:,0:6], final.iloc[:,11:]], axis = 1)
+final['fuck_total'] = final['fuck'] + final['motherfuck']
+
 
 # Store values in session state
 if 'final' not in st.session_state:
