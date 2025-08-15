@@ -13,6 +13,7 @@ import json
 import plotly.graph_objects as go
 
 if 'final' in st.session_state:
+	break
 	final = st.session_state['final']
     
 	dates = list(final['date'].unique())
