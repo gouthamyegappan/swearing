@@ -30,7 +30,7 @@ number = st.number_input(
     "Songs With This Percent of Swears", value=0.01, min_value = 0.01, max_value = 0.9
 )
 num_swears = data[number]
-fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
+fig4 = px.line(x=num_swears.index, y=num_swears, title="")
 st.plotly_chart(fig4)
 
 
@@ -38,6 +38,6 @@ data2 = pd.read_csv('songs_by_swears.csv', index_col = 0)
 numb2 = st.number_input("Songs With This # of Swears", value=1, max_value = 30)
 data2.columns = data2.columns.astype(float)
 num_swears2 = data2[numb2]
-fig5 = px.line(x=num_swears2.index, y=num_swears2, title="Rank's Impact on Swearing 2")
+fig5 = px.line(x=num_swears2.index, y=num_swears2, title="")
 st.plotly_chart(fig5)
 
