@@ -93,6 +93,12 @@ fig.update_layout(
     height=370 
 )
 
+# Set axis labels and titles
+fig.update_layout(
+    xaxis_title="Year",
+    yaxis_title="% of Songs Identified",
+)
+
 col1, col2 = st.columns(2)
 percent_found = round(len(final)/1660, 1) 
 percent_found_1980 = round(len(final[final['date'] > '1980'])/(len(final[final['date'] > '1980']['date'].unique()) * 100),3) * 100
@@ -103,7 +109,7 @@ with col1:
     st.write("The total number of songs is ", len(final))
     st.write("The number of unique songs is ", len(final.drop_duplicates(subset = ['title', 'artist'])))
 
-    st.write("This is ", percent_found, 'of the total songs')
+    st.write("This is ", percent_found, '% identified of the total songs in the charts')
 
 
 with col2:
