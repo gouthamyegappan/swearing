@@ -1,43 +1,53 @@
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import streamlit as st
 import pandas as pd
-import numpy as np
-import pickle
 import plotly.express as px
-from zipfile import ZipFile
-import pickle
-import numpy as np
-import seaborn as sb
-import json
 import plotly.graph_objects as go
 import plotly.io as pio
 
 st.subheader("Trajectory of Swearing in Music Over Time Raw Value")
 
-# Read the JSON file and convert it back to a Plotly figure
-with open("dist_figure.json", "r") as f:
-    fig_json = f.read()
+@st.cache_data(ttl=None, max_entries=3, show_spinner=False)
+def load_dist_figure():
+    with open("dist_figure.json", "r") as f:
+        return pio.from_json(f.read())  # cached figure object
 
-# Load the figure from the JSON string
-fig = pio.from_json(fig_json)
-st.plotly_chart(fig)
+@st.cache_data(ttl=None, max_entries=3, show_spinner=False)
+def load_percent_dist():
+    df = pd.read_csv("percent_dist.csv", index_col=0)
+    df.columns = df.columns.astype(float)
+    return df
 
-data = pd.read_csv('percent_dist.csv', index_col = 0)
-data.columns = data.columns.astype(float)
+@st.cache_data(ttl=None, max_entries=3, show_spinner=False)
+def load_songs_by_swears():
+    df = pd.read_csv("songs_by_swears.csv", index_col=0)
+    # columns are numeric counts; keep as int if possible
+    try:
+        df.columns = df.columns.astype(int)
+    except Exception:
+        pass
+    return df
+
+# 1) Cached JSON figure
+fig_raw = load_dist_figure()
+st.plotly_chart(fig_raw, use_container_width=True)
+
+# 2) Percent threshold chart
 st.subheader("Trajectory of Swearing in Music Over Time")
-number = st.number_input(
-    "Songs With This Percent of Swears", value=0.01, min_value = 0.01, max_value = 0.9
-)
-num_swears = data[number]
-fig4 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
-st.plotly_chart(fig4)
+percent_df = load_percent_dist()
+percent = st.number_input("Songs With This Percent of Swears", value=0.01, min_value=0.01, max_value=0.9)
+if float(percent) in percent_df.columns:
+    s = percent_df[float(percent)]
+    fig_pct = px.line(x=s.index, y=s, title="Percent threshold over time")
+    st.plotly_chart(fig_pct, use_container_width=True)
+else:
+    st.info("No data for that percent threshold.")
 
-
-data2 = pd.read_csv('songs_by_swears.csv', index_col = 0)
-numb2 = st.number_input("Songs With This # of Swears", value=1, max_value = 30)
-data2.columns = data2.columns.astype(float)
-num_swears2 = data2[numb2]
-fig5 = px.line(x=num_swears2.index, y=num_swears2, title="Rank's Impact on Swearing 2")
-st.plotly_chart(fig5)
-
+# 3) By absolute count chart
+count_df = load_songs_by_swears()
+count = st.number_input("Songs With This # of Swears", value=1, min_value=0, max_value=int(count_df.columns.max()))
+if int(count) in count_df.columns:
+    s2 = count_df[int(count)]
+    fig_cnt = px.line(x=s2.index, y=s2, title="Count threshold over time")
+    st.plotly_chart(fig_cnt, use_container_width=True)
+else:
+    st.info("No data for that count.")
