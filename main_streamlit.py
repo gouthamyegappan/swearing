@@ -56,8 +56,12 @@ def create_data():
 	final = pd.concat([data1, data2, data3, data4])
 	final = pd.concat([final.iloc[:,0:6], final.iloc[:,11:]], axis = 1)
 	final['fuck_total'] = final['fuck'] + final['motherfuck']
+	swears = ["shit", "bitch", "damn", "dick", "fuck_total", "ass", "hell"]
+    f = pd.concat([final.iloc[:, :10], final[swears]], axis = 1)
+    f['total_swear'] = f.iloc[:, -7:].sum(axis = 1)
+    f['percent_swear'] = f['total_swear'] / f['tot_words']
 
-	return final
+	return f
 
 
 # Store values in session state
