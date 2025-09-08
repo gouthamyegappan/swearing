@@ -15,7 +15,7 @@ col3, col4 = st.columns(2)
 
 
 songs = pd.read_csv('rank_impact_on_swearing.csv', index_col = 0)
-def get_rank_graph(col, title):
+def get_rank_graph(col, title. yaxis):
     rank_dta = songs.groupby("rank")[col].mean()
     
     fig2 = px.line(x=rank_dta.index, y=rank_dta, title= title)
@@ -47,7 +47,7 @@ def get_rank_graph(col, title):
     
     fig2.update_layout(
         xaxis_title="Rank",
-        yaxis_title="Average Number of Swears"
+        yaxis_title=yaxis
     )
     
     old = rank_dta[:10].sum()/10
@@ -56,8 +56,8 @@ def get_rank_graph(col, title):
 
     return fig2, old, new, percent_change
 
-fig2, old2, new2, percent_change2 = get_rank_graph('total_swear', "Rank's Impact on Average Number of Swears in a Song")
-fig3, old3, new3, percent_change3 = get_rank_graph('percent_swear', "Rank's Impact on Percentage of Swears in a Song")
+fig2, old2, new2, percent_change2 = get_rank_graph('total_swear', "Rank's Impact on Average Number of Swears in a Song", "Average Number of Swears")
+fig3, old3, new3, percent_change3 = get_rank_graph('percent_swear', "Rank's Impact on Percentage of Swears in a Song", "Percent of Swears")
 
 with col3:
 	st.plotly_chart(fig2)
