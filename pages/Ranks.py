@@ -10,6 +10,8 @@ import seaborn as sb
 import json
 import plotly.graph_objects as go
 
+st.set_page_config(layout='wide')
+
 st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
 
