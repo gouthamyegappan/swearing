@@ -33,6 +33,7 @@ st.plotly_chart(fig_raw, use_container_width=True)
 # 2) Percent threshold chart
 st.subheader("Trajectory of Swearing in Music Over Time")
 percent_df = load_percent_dist()
+
 num = st.selectbox(
     "Number of Swears",
     ("1", "2", "5", "10"),
