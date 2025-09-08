@@ -14,7 +14,6 @@ def load_dist_figure():
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
 def load_percent_dist():
     df = pd.read_csv("percent_dist.csv", index_col=0)
-    df.columns = df.columns.astype(float)
     return df
 
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
@@ -34,13 +33,14 @@ st.plotly_chart(fig_raw, use_container_width=True)
 # 2) Percent threshold chart
 st.subheader("Trajectory of Swearing in Music Over Time")
 percent_df = load_percent_dist()
-percent = st.number_input("Songs With This Percent of Swears", value=0.01, min_value=0.01, max_value=0.9)
-if float(percent) in percent_df.columns:
-    s = percent_df[float(percent)]
-    fig_pct = px.line(x=s.index, y=s, title="Percent threshold over time")
-    st.plotly_chart(fig_pct, use_container_width=True)
-else:
-    st.info("No data for that percent threshold.")
+num = st.selectbox(
+    "Number of Swears",
+    ("1", "2", "5", "10"),
+)
+s = percent_df[num]
+fig_pct = px.line(x=s.index, y=s, title=f"Percent of Songs with {num} number of swears")
+st.plotly_chart(fig_pct, use_container_width=True)
+
 
 # 3) By absolute count chart
 count_df = load_songs_by_swears()
