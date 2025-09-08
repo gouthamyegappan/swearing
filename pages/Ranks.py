@@ -15,7 +15,7 @@ col3, col4 = st.columns(2)
 
 
 songs = pd.read_csv('rank_impact_on_swearing.csv', index_col = 0)
-def get_rank_graph(col, title. yaxis):
+def get_rank_graph(col, title, yaxis):
     rank_dta = songs.groupby("rank")[col].mean()
     
     fig2 = px.line(x=rank_dta.index, y=rank_dta, title= title)
