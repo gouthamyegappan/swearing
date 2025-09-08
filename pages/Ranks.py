@@ -71,7 +71,7 @@ with col4:
 
 st.subheader("What percent of songs at each rank have N number of swear words?")
 number = st.selectbox(
-    "How many swears would you like to see?",
+    "How many swears would you like to filter for?",
     ("1", "3", "5", "10", "15", "20"),
 )
 
