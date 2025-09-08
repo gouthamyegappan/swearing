@@ -65,18 +65,18 @@ with col3:
 with col4:
 	st.plotly_chart(fig3)
 
-'''
-st.write(f'In the chart to the right, there is {percent_change}% more swears on average in the songs that reach ranks 90-100 compared to the ones that make it to 1-10. When looking at the best fit line we can see that the slope is {round(slope, 2)}, meaning that for each rank we drop there is on average that many more swears. Our y-intercept is {round(intercept, 2)}, meaning that songs making it to the number one spot, still have this many swears on average.')
+###st.write(f'In the chart to the right, there is {percent_change}% more swears on average in the songs that reach ranks 90-100 compared to the ones that make it to 1-10. When looking at the best fit line we can see that the slope is {round(slope, 2)}, meaning that for each rank we drop there is on average that many more swears. Our y-intercept is {round(intercept, 2)}, meaning that songs making it to the number one spot, still have this many swears on average.')
 
 st.subheader("What percent of songs at each rank have N number of swear words?")
-number = st.number_input(
-    "Songs With This Number of Swears", value=1
+number = st.selectbox(
+    "How many swears would you like to see?",
+    ("1", "3", "5", "10", "15", "20"),
 )
 
 data = pd.read_csv('swear_words_by_rank.csv', index_col = 0)
 data.columns = data.columns.astype(int)
-num_swears = data[number]
+num_swears = data[int(number)]
 fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
 st.plotly_chart(fig3)
-'''
+
 	
