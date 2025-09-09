@@ -12,6 +12,11 @@ st.subheader("Most Sweary Song Every Year")
 def load_most_by_year():
     return pd.read_csv("most_byyear.csv", index_col=0)
 
+@st.cache_data(ttl=None, max_entries=4, show_spinner=False)
+def load_which_swear():
+    which_swear = pd.read_csv('which_swear.csv', index_col=0)
+    return which_swear.reset_index().melt(id_vars="index", var_name="Line", value_name="Value")
+
 @st.cache_data(ttl=None, max_entries=2, show_spinner=False)
 def load_traj():
     # traj.json looks like a 2-row structure you index with iloc
@@ -20,44 +25,20 @@ def load_traj():
 data = load_most_by_year()
 st.dataframe(data, use_container_width=True)
 
-if "final" in st.session_state:
-    final = st.session_state["final"]
-    st.subheader("Correlation Matrix of Swears")
+df_melted = load_which_swear()
+# Line plot
+fig = px.line(
+    df_melted,
+    x="index",
+    y="Value",
+    color="Line",
+    title="How Common is Each Swear in Songs OVer Past 4 Decades",
+    labels={"index": "X-axis", "Value": "Y-axis"}
+)
+fig.update_layout(
+	xaxis_title="Year",
+	yaxis_title="Percent of Songs",
+    height = 700,
+    width = 900
+)
 
-    corr_cols = ["shit", "bitch", "damn", "dick", "fuck_total", "ass", "hell"]
-    corr_df = (
-        final.drop_duplicates(subset=["title", "artist"], keep="first")[corr_cols]
-        .corr()
-    )
-
-    # Seaborn/Matplotlib → render and CLOSE the figure
-    fig, ax = plt.subplots(figsize=(6, 4))
-    sb.heatmap(corr_df, vmin=-0.1, vmax=0.6, annot=True, ax=ax)
-    st.pyplot(fig, use_container_width=True)
-    plt.close(fig)  # <-- IMPORTANT: prevents figure handle leaks
-
-    j = load_traj()
-    counts = [j.iloc[1][0], j.iloc[1][1]]
-    words = list(j.iloc[0].values)
-
-    with st.container(border=True):
-        relative = st.checkbox("Measure by percents instead of absolute counts of swear words")
-        on = []
-        with st.container():
-            for word in words:
-                on.append(st.checkbox(word, key=word))
-
-        counts = counts[int(relative)]
-
-        ppy = go.Figure()
-        x = list(range(1980, 2024))
-        for word, b in zip(words, on):
-            if not b:
-                continue
-            y = counts[word]
-            ppy.add_trace(go.Scatter(x=x, y=y, mode="lines", name=word))
-
-        ppy.update_layout(xaxis=dict(range=[x[0], x[-1]]))
-        st.plotly_chart(ppy, use_container_width=True)
-
-st.subheader("What Percent of the 7 Are Used?")
