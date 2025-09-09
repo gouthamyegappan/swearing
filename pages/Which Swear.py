@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt  # needed to close figures
 import json
 import plotly.express as px
 
-
+st.set_page_config(layout='wide')
 st.subheader("Most Sweary Song Every Year")
 
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
