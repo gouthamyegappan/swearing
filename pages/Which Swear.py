@@ -5,6 +5,8 @@ import plotly.graph_objects as go
 import seaborn as sb
 import matplotlib.pyplot as plt  # needed to close figures
 import json
+import plotly.express as px
+
 
 st.subheader("Most Sweary Song Every Year")
 
