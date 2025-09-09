@@ -41,4 +41,6 @@ fig.update_layout(
     height = 700,
     width = 900
 )
+st.plotly_chart(fig)
+
 
