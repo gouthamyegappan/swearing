@@ -15,6 +15,11 @@ def load_dist_swears():
         fig = pio.from_json(f.read())
     return fig
 
+@st.cache_data(ttl=None, max_entries=3, show_spinner=False)
+def load_dist():
+    df = pd.read_csv("dist.csv", index_col=0)
+    return df
+
 # 2) Percent threshold chart
 st.subheader("Trajectory of Swearing in Music Over Time")
 percent_df = load_percent_dist()
@@ -30,6 +35,9 @@ st.plotly_chart(fig_pct, use_container_width=True)
 st.subheader("Distribution of Swears in Songs that Have Swears")
 fig_dist = load_dist_swears()
 st.plotly_chart(fig_dist, use_container_width=True)
+
+df = load_dist()
+
 
 
 
