@@ -76,7 +76,10 @@ st.subheader("How has swearing in music changed over the past four decades?")
 st.write(f"Our dataset starting in 1980 and ending in 2023 has a total of {107294} songs. Of these there are {23837} unique songs. Of these unique songs, {20.7}% of the songs have atleast one swear in them. Out of all unique songs there are on average {1.64} swears in each song. If we only look at the songs with atleast one swear, then the swear average is {7.93}.")
 
 df = load_swear_counts()
-col1, col2 = df.columns()
-st.table(df)
+col1, col2 = st.columns(2)
+with col1:
+	st.table(df)
+with col2:
+	st.write("In our dataset when looking at the unique songs, the percentages shown on the left indicate how many songs contained that word at least once.")
 
 
