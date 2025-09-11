@@ -18,6 +18,7 @@ def load_dist_swears():
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
 def load_dist():
     df = pd.read_csv("dist.csv", index_col=0)
+    df.columns = ["1", "2", "5", "More than 10"]
     return df
 
 # 2) Percent threshold chart
