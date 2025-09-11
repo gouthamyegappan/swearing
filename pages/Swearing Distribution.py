@@ -37,6 +37,11 @@ fig_dist = load_dist_swears()
 st.plotly_chart(fig_dist, use_container_width=True)
 
 df = load_dist()
+col1, col2 = st.columns(2)
+with col1:
+    st.table(df)
+with col2:
+    st.write("The data on the right describes the distribution of swears based on the number of swears found in the song. For example for the first column, 41% of the songs that only have 1 swear have the word 'hell' in it.")
 
 
 
