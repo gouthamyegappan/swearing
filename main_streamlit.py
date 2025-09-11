@@ -15,7 +15,10 @@ import plotly.graph_objects as go
 def load_swear_counts():
     return pd.read_csv("counts.csv", index_col=0)
 
-
+@st.cache_data(ttl=None, max_entries=4, show_spinner=False)
+def load_swear_counts_byyear():
+    return pd.read_csv("counts_byyear.csv", index_col=0)
+	
 def create_data():
 	with ZipFile('data1 (2).zip', 'r') as f:
 	    # Extract all contents in the current directory
@@ -81,5 +84,10 @@ with col1:
 	st.table(df)
 with col2:
 	st.write("In our dataset when looking at the unique songs, the percentages shown on the left indicate how many songs contained that word at least once.")
+
+st.subheader("Distribution of Swears by Decade")
+data = load_swear_counts_byyear()
+st.table(data)
+
 
 
