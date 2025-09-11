@@ -28,8 +28,8 @@ fig_pct = px.line(x=s.index, y=s, title=f"Percent of Songs with {num} number of 
 st.plotly_chart(fig_pct, use_container_width=True)
 
 st.subheader("Distribution of Swears in Songs that Have Swears")
-fig = load_dist_swears()
-st.plotly_chart(fig_pct, use_container_width=True)
+fig_dist = load_dist_swears()
+st.plotly_chart(fig_dist, use_container_width=True)
 
 
 
