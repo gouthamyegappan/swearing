@@ -4,11 +4,10 @@ import numpy as np
 import pickle
 import plotly.express as px
 from zipfile import ZipFile
-import pickle
-import numpy as np
 import seaborn as sb
 import json
 import plotly.graph_objects as go
+import plotly.io as pio
 
 # Open the .zip file
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
@@ -102,6 +101,11 @@ if option == "Percentage":
 else:
 	data = load_raw_swear_counts_byyear()
 	st.table(data)
+
+# Load figure from JSON file
+with open("swears_bydecade.json", "r") as f:
+    fig = pio.from_json(f.read())
+st.plotly_chart(fig)
 
 
 
