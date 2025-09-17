@@ -18,6 +18,10 @@ def load_swear_counts():
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_swear_counts_byyear():
     return pd.read_csv("counts_byyear.csv", index_col=0)
+
+@st.cache_data(ttl=None, max_entries=4, show_spinner=False)
+def load_raw_swear_counts_byyear():
+    return pd.read_csv("rawnumber_byyear.csv", index_col=0)
 	
 def create_data():
 	with ZipFile('data1 (2).zip', 'r') as f:
@@ -96,6 +100,7 @@ if option == "Percentage":
 	data = load_swear_counts_byyear()
 	st.table(data)
 else:
+	data = load_raw_swear_counts_byyear()
 	st.table(data)
 
 
