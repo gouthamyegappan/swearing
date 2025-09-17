@@ -86,8 +86,17 @@ with col2:
 	st.write("In our dataset when looking at the unique songs, the percentages shown on the left indicate how many songs contained that word at least once.")
 
 st.subheader("Distribution of Swears by Decade")
-data = load_swear_counts_byyear()
-st.table(data)
+
+option = st.selectbox(
+    "Do you want the raw number or percentage of songs with swears by decade?",
+    ("Percentage", "Raw"),
+)
+
+if option == "Percentage":
+	data = load_swear_counts_byyear()
+	st.table(data)
+else:
+	st.table(data)
 
 
 
