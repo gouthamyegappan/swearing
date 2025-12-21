@@ -79,7 +79,12 @@ st.set_page_config(layout='wide')
 
 st.subheader("How has swearing in music changed over the past four decades?")
 
-st.write(f"Our dataset starting in 1980 and ending in 2023 has a total of {"107,294"} songs. Of these there are {"15,020"} unique songs. Of these unique songs, {30.4}% of the songs have atleast one swear in them. Out of all unique songs there are on average {2.54} swears in each song. If we only look at the songs with atleast one swear, then the swear average is {8.37}.")
+with open("data_front_page.txt", "r") as f:
+    lines = f.readlines()
+
+lines = [line.strip() for line in lines]
+
+st.write(f"Our dataset starting in 1980 and ending in 2023 has a total of {lines[0]} songs. Of these there are {lines[1]} unique songs. Of these unique songs, {lines[2]} of the songs have atleast one swear in them. Out of all unique songs there are on average {lines[3]} swears in each song. If we only look at the songs with atleast one swear, then the swear average is {lines[4]}.")
 
 df = load_swear_counts()
 col1, col2 = st.columns(2)
