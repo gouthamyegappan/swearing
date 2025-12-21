@@ -15,7 +15,7 @@ st.set_page_config(layout='wide')
 st.subheader("How does the rank impact the amount of swearing we find?")
 col3, col4 = st.columns(2)
 
-songs = pd.read_csv('rank_impact_on_swearing.csv', index_col = 0)
+songs = pd.read_csv('data/ranks/rank_impact_on_swearing.csv', index_col = 0)
 def get_rank_graph(col, title, yaxis):
     rank_dta = songs.groupby("rank")[col].mean()
     
@@ -75,7 +75,7 @@ number = st.selectbox(
     ("1", "3", "5", "10", "15", "20"),
 )
 
-data = pd.read_csv('swear_words_by_rank.csv', index_col = 0)
+data = pd.read_csv('data/ranks/swear_words_by_rank.csv', index_col = 0)
 data.columns = data.columns.astype(int)
 num_swears = data[int(number)]
 fig3 = px.line(x=num_swears.index, y=num_swears, title="Rank's Impact on Swearing")
