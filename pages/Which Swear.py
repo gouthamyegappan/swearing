@@ -12,17 +12,17 @@ st.subheader("Most Sweary Song Every Year")
 
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_most_by_year():
-    return pd.read_csv("most_byyear.csv", index_col=0)
+    return pd.read_csv("data/swears/most_byyear.csv", index_col=0)
 
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_which_swear():
-    which_swear = pd.read_csv('which_swear.csv', index_col=0)
+    which_swear = pd.read_csv('data/swears/which_swear.csv', index_col=0)
     return which_swear.reset_index().melt(id_vars="index", var_name="Line", value_name="Value")
 
 @st.cache_data(ttl=None, max_entries=2, show_spinner=False)
 def load_traj():
     # traj.json looks like a 2-row structure you index with iloc
-    return pd.read_json("traj.json")
+    return pd.read_json("data/swears/traj.json")
 
 data = load_most_by_year()
 st.dataframe(data, use_container_width=True)
