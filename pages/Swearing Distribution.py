@@ -6,18 +6,18 @@ import plotly.io as pio
 
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
 def load_percent_dist():
-    df = pd.read_csv("percent_dist.csv", index_col=0)
+    df = pd.read_csv("data/distribution/percent_dist.csv", index_col=0)
     return df
 
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
 def load_dist_swears():
-    with open("dist_swears.json", "r") as f:
+    with open("data/distribution/dist_swears.json", "r") as f:
         fig = pio.from_json(f.read())
     return fig
 
 @st.cache_data(ttl=None, max_entries=3, show_spinner=False)
 def load_dist():
-    df = pd.read_csv("dist.csv", index_col=0)
+    df = pd.read_csv("data/distribution/dist.csv", index_col=0)
     df.columns = ["1", "2", "5", "More than 10"]
     return df
 
