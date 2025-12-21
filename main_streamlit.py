@@ -12,15 +12,15 @@ import plotly.io as pio
 # Open the .zip file
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_swear_counts():
-    return pd.read_csv("counts.csv", index_col=0)
+    return pd.read_csv("data/counts.csv", index_col=0)
 
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_swear_counts_byyear():
-    return pd.read_csv("counts_byyear.csv", index_col=0)
+    return pd.read_csv("data/counts_byyear.csv", index_col=0)
 
 @st.cache_data(ttl=None, max_entries=4, show_spinner=False)
 def load_raw_swear_counts_byyear():
-    return pd.read_csv("rawnumber_byyear.csv", index_col=0)
+    return pd.read_csv("data/rawnumber_byyear.csv", index_col=0)
 	
 def create_data():
 	with ZipFile('data1 (2).zip', 'r') as f:
@@ -79,7 +79,7 @@ st.set_page_config(layout='wide')
 
 st.subheader("How has swearing in music changed over the past four decades?")
 
-with open("data_front_page.txt", "r") as f:
+with open("data/data_front_page.txt", "r") as f:
     lines = f.readlines()
 
 lines = [line.strip() for line in lines]
@@ -108,7 +108,7 @@ else:
 	st.table(data)
 
 # Load figure from JSON file
-with open("swears_bydecade.json", "r") as f:
+with open("data/swears_bydecade.json", "r") as f:
     fig = pio.from_json(f.read())
 st.plotly_chart(fig)
 
